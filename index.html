@@ -4,73 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Chất Lượng Không Khí</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Liên kết tới tệp CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/scripts.js" defer></script> <!-- Liên kết tới tệp JavaScript -->
 </head>
 <body>
-
-    <header>
-        <h1>Quản Lý Chất Lượng Không Khí tại Đồng Hỷ</h1>
-    </header>
-
     <div id="auth">
-        <h2>Đăng Nhập</h2>
-        <form id="login-form">
-            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="login-password" placeholder="Mật khẩu" required>
-            <button type="submit">Đăng Nhập</button>
-        </form>
-
         <h2>Đăng Ký</h2>
         <form id="register-form">
             <input type="text" id="username" placeholder="Tên đăng nhập" required>
             <input type="password" id="password" placeholder="Mật khẩu" required>
             <button type="submit">Đăng Ký</button>
         </form>
+
+        <h2>Đăng Nhập</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="login-password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Nhập</button>
+        </form>
     </div>
 
-    <div id="air-quality" style="display: none;">
-        <h2>Chất lượng Không khí</h2>
-        <p id="aqi-data"></p>
-        
-        <h3>Biểu Đồ PM2.5</h3>
-        <canvas id="pm25Chart" width="400" height="200"></canvas>
-        
-        <h3>Biểu Đồ PM10</h3>
-        <canvas id="pm10Chart" width="400" height="200"></canvas>
-        
-        <h3>Biểu Đồ CO2</h3>
-        <canvas id="co2Chart" width="400" height="200"></canvas>
-
-        <h2>Các Bài Viết Phân Tích</h2>
-        <div id="articles"></div>
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Chất Lượng Không Khí Huyện Đồng Hỷ</h1>
+        </header>
+        <div id="charts-container">
+            <canvas id="airQualityChart" width="400" height="200"></canvas>
+            <!-- Thêm các biểu đồ khác ở đây -->
+        </div>
+        <div id="articles">
+            <h2>Các Bài Viết Phân Tích</h2>
+            <ul id="articles-list"></ul>
+        </div>
     </div>
 
+    <script src="js/scripts.js"></script>
 </body>
 </html>
-<div id="auth">
-    <h2>Đăng Nhập</h2>
-    <form id="login-form">
-        <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-        <input type="password" id="login-password" placeholder="Mật khẩu" required>
-        <button type="submit">Đăng Nhập</button>
-    </form>
-
-    <h2>Đăng Ký</h2>
-    <form id="register-form">
-        <input type="text" id="username" placeholder="Tên đăng nhập" required>
-        <input type="password" id="password" placeholder="Mật khẩu" required>
-        <button type="submit">Đăng Ký</button>
-    </form>
-</div>
-
-<div id="air-quality" style="display: none;">
-    <h2>Chất lượng Không khí</h2>
-    <p id="aqi-data"></p>
-    <!-- Các biểu đồ và nội dung khác -->
-</div>
-<head>
-    <title>Quản Lý Chất Lượng Không Khí</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css"> <!-- Liên kết tới tệp CSS -->
-</head>
