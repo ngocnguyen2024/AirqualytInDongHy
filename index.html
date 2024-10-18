@@ -69,3 +69,25 @@
 
   fetchAQI();
 </script>
+<div id="blog-posts">
+  <h3>Bài Viết Mới Nhất</h3>
+  <ul id="posts-list"></ul>
+</div>
+
+<script>
+  async function fetchPosts() {
+    const response = await fetch(
+      'https://api.github.com/repos/ngocnguyen2024/AirqualytInDongHy/issues'
+    );
+    const posts = await response.json();
+
+    const postsList = document.getElementById('posts-list');
+    posts.forEach((post) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<a href="${post.html_url}" target="_blank">${post.title}</a>`;
+      postsList.appendChild(listItem);
+    });
+  }
+
+  fetchPosts();
+</script>
