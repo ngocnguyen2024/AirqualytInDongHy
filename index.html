@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -7,63 +6,35 @@
     <title>Quản Lý Chất Lượng Không Khí</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h2 {
-            color: #333;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        input {
-            margin: 5px 0;
-            padding: 10px;
-            width: 100%;
-            max-width: 300px;
-        }
-        button {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
+        /* Thêm CSS tại đây nếu cần */
     </style>
 </head>
 <body>
 
-    <h1>Quản Lý Chất Lượng Không Khí tại Đồng Hỷ</h1>
-
     <div id="auth">
-        <h2>Đăng Ký</h2>
-        <form id="register-form">
-            <input type="text" id="username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="password" placeholder="Mật khẩu" required>
-            <button type="submit">Đăng Ký</button>
-        </form>
-
         <h2>Đăng Nhập</h2>
         <form id="login-form">
             <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
             <input type="password" id="login-password" placeholder="Mật khẩu" required>
             <button type="submit">Đăng Nhập</button>
         </form>
+
+        <h2>Đăng Ký</h2>
+        <form id="register-form">
+            <input type="text" id="username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Ký</button>
+        </form>
     </div>
 
-    <div id="air-quality" style="display:none;">
-        <h3>Chất Lượng Không Khí</h3>
-        <p id="aqi-data">Đang tải dữ liệu...</p>
+    <div id="air-quality" style="display: none;">
+        <h2>Chất lượng Không khí</h2>
+        <p id="aqi-data"></p>
         <canvas id="aqiChart" width="400" height="200"></canvas>
     </div>
 
     <script>
+        // Thêm mã JavaScript tại đây
         let isLoggedIn = false; // Biến trạng thái đăng nhập
 
         // Xử lý đăng ký
@@ -101,8 +72,8 @@
 
         // Lấy dữ liệu AQI từ API
         async function fetchAQI() {
-            const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee'; // Thay YOUR_API_KEY bằng API key bạn nhận được
-            const city = 'Thai Nguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
+            const apiKey = 'YOUR_API_KEY'; // Thay YOUR_API_KEY bằng API key bạn nhận được
+            const city = 'thainguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
 
             try {
                 const response = await fetch(
@@ -119,6 +90,9 @@
                     const aqi = data.data.aqi;
                     document.getElementById('aqi-data').innerText =
                         `Chỉ số AQI: ${aqi}`;
+
+                    // Phân loại chất lượng không khí và cảnh báo
+                    classifyAQI(aqi);
                     
                     // Gọi hàm để vẽ biểu đồ
                     drawAQIChart(aqi);
@@ -131,6 +105,33 @@
                 document.getElementById('aqi-data').innerText =
                     'Không thể lấy dữ liệu AQI.';
             }
+        }
+
+        // Phân loại chất lượng không khí và đưa ra cảnh báo
+        function classifyAQI(aqi) {
+            let quality;
+            let alertMessage;
+
+            if (aqi <= 50) {
+                quality = "Tốt";
+                alertMessage = "Chất lượng không khí tốt. Không cần lo lắng!";
+            } else if (aqi <= 100) {
+                quality = "Vừa Phải";
+                alertMessage = "Chất lượng không khí vừa phải. Có thể có ảnh hưởng với một số người nhạy cảm.";
+            } else if (aqi <= 150) {
+                quality = "Xấu";
+                alertMessage = "Chất lượng không khí xấu. Cần hạn chế hoạt động ngoài trời.";
+            } else if (aqi <= 200) {
+                quality = "Rất Xấu";
+                alertMessage = "Chất lượng không khí rất xấu. Nên ở trong nhà.";
+            } else {
+                quality = "Nguy Hiểm";
+                alertMessage = "Chất lượng không khí nguy hiểm. Cần có các biện pháp bảo vệ.";
+            }
+
+            // Hiển thị thông tin chất lượng không khí và cảnh báo
+            document.getElementById('aqi-data').innerText += ` (${quality})`;
+            alert(alertMessage); // Cảnh báo cho người dùng
         }
 
         // Vẽ biểu đồ chất lượng không khí
@@ -164,4 +165,3 @@
     </script>
 </body>
 </html>
-
