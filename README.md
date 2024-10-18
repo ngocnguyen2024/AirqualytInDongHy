@@ -1,23 +1,24 @@
-# Quản Lý Chất Lượng Không Khí
+# Quản Lý Chất Lượng Không Khí Huyện Đồng Hỷ
 
-Dự án này nhằm mục đích xây dựng một hệ thống quản lý chất lượng không khí tại huyện Đồng Hỷ.
+Dự án này nhằm mục đích phát triển một hệ thống quản lý chất lượng không khí cho huyện Đồng Hỷ, cung cấp thông tin về chất lượng không khí theo thời gian thực và các bài viết phân tích về ô nhiễm không khí.
 
-## Cấu Trúc Thư Mục
+## Tính Năng
 
-/air-quality-management
-    ├── index.html               # Tệp HTML chính của trang web
-    ├── /css                     # Thư mục chứa các tệp CSS
-    │   └── styles.css           # Tệp CSS để thiết kế giao diện
-    ├── /js                      # Thư mục chứa các tệp JavaScript
-    │   └── scripts.js           # Tệp JavaScript để xử lý logic của ứng dụng
-    ├── /images                  # Thư mục chứa hình ảnh
-    │   └── background.jpg       # Hình nền cho trang web
-    └── /articles                # Thư mục chứa dữ liệu bài viết
-        └── articles.js          # Tệp JavaScript chứa các bài viết phân tích
+- Đăng ký và đăng nhập người dùng
+- Hiển thị chất lượng không khí theo thời gian thực
+- Biểu đồ trực quan về các chỉ số chất lượng không khí
+- Danh sách các bài viết phân tích về ô nhiễm không khí
 
+## Công Nghệ Sử Dụng
 
-## Hướng Dẫn Sử Dụng
+- HTML, CSS, JavaScript
+- Chart.js cho biểu đồ
+- API AQI để lấy dữ liệu chất lượng không khí
+- Firebase cho quản lý người dùng (nếu có)
 
-1. **Cài đặt**: Để chạy dự án, hãy mở tệp `index.html` trong trình duyệt.
-2. **Đăng Nhập và Đăng Ký**: Bạn có thể tạo tài khoản và đăng nhập để truy cập thông tin chất lượng không khí.
-3. **Biểu Đồ và Dữ Liệu**: Dữ liệu chất lượng không khí được lấy từ API và hiển thị qua các biểu đồ.
+## Hướng Dẫn Cài Đặt
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/ngocnguyen2024/AirqualytInDongHy.git
+   cd AirqualytInDongHy
