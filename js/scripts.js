@@ -1,5 +1,3 @@
-// scripts.js
-
 const users = [];
 
 // Đăng ký người dùng
@@ -7,14 +5,14 @@ document.getElementById('register-form').addEventListener('submit', function(e) 
     e.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     const userExists = users.some(u => u.username === username);
-    
+
     if (userExists) {
         alert('Tên đăng nhập đã tồn tại!');
     } else {
         users.push({ username, password });
         alert('Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.');
+        document.getElementById('register-form').reset(); // Reset form sau khi đăng ký
     }
 });
 
@@ -23,9 +21,8 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-
     const user = users.find(u => u.username === username && u.password === password);
-    
+
     if (user) {
         document.getElementById('auth').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
@@ -44,12 +41,11 @@ async function fetchAirQualityData() {
     try {
         const response = await fetch(url);
         const data = await response.json();
-
         if (data.status === "ok") {
             const aqi = data.data.aqi;
             const aqiCategory = getAQICategory(aqi);
             alert(`Chất lượng không khí hiện tại: ${aqi} (${aqiCategory})`);
-            displayAQIChart(data.data.iaqi);
+            displayAQIChart(data.data.iaqi); // Hiển thị biểu đồ
         } else {
             alert('Không thể lấy dữ liệu chất lượng không khí.');
         }
@@ -71,7 +67,6 @@ function getAQICategory(aqi) {
 // Hàm hiển thị biểu đồ chất lượng không khí
 function displayAQIChart(iaqData) {
     const ctx = document.getElementById('airQualityChart').getContext('2d');
-    
     const labels = Object.keys(iaqData);
     const values = Object.values(iaqData).map(item => item.v); // Lấy giá trị AQI cho từng chỉ số
 
@@ -103,11 +98,10 @@ function addArticles() {
         { title: "Phân Tích Chất Lượng Không Khí Tháng 1", content: "Dữ liệu cho thấy mức độ ô nhiễm cao vào tháng 1..." },
         { title: "Tác Động của Ô Nhiễm Đến Sức Khỏe", content: "Ô nhiễm không khí có thể gây ra nhiều vấn đề sức khỏe..." },
     ];
-
     const articlesList = document.getElementById('articles-list');
     articles.forEach(article => {
         const li = document.createElement('li');
-        li.innerHTML = `<strong>${article.title}</strong>: ${article.content}`;
+        li.innerHTML = `<strong>${article.title}:</strong> ${article.content}`;
         articlesList.appendChild(li);
     });
 }
