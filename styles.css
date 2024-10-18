@@ -17,3 +17,42 @@ header {
 h1, h2, h3 {
     margin: 10px;
 }
+/* styles.css */
+
+/* Thiết lập màu nền trắng cho toàn bộ trang */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Màu nền trắng */
+    font-family: Arial, sans-serif; /* Chọn font chữ */
+    color: #333; /* Màu chữ tối để dễ đọc */
+}
+
+/* Định dạng cho các tiêu đề */
+h1, h2, h3 {
+    color: #333; /* Màu chữ cho tiêu đề */
+}
+
+/* Định dạng cho các nút */
+button {
+    background-color: #4CAF50; /* Màu nền nút */
+    color: white; /* Màu chữ nút */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Bo góc cho nút */
+}
+
+/* Định dạng cho các input */
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc; /* Viền cho input */
+    border-radius: 4px; /* Bo góc cho input */
+    width: calc(100% - 22px); /* Để input không chèn ra ngoài */
+}
