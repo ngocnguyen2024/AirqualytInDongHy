@@ -5,15 +5,16 @@ Dự án này nhằm mục đích xây dựng một hệ thống quản lý ch�
 ## Cấu Trúc Thư Mục
 
 /air-quality-management
-    ├── index.html
-    ├── /css
-    │   └── styles.css
-    ├── /js
-    │   └── scripts.js
-    ├── /images
-    │   └── background.jpg
-    └── /articles
-        └── articles.js  (hoặc có thể tạo các tệp JSON nếu cần)
+    ├── index.html               # Tệp HTML chính của trang web
+    ├── /css                     # Thư mục chứa các tệp CSS
+    │   └── styles.css           # Tệp CSS để thiết kế giao diện
+    ├── /js                      # Thư mục chứa các tệp JavaScript
+    │   └── scripts.js           # Tệp JavaScript để xử lý logic của ứng dụng
+    ├── /images                  # Thư mục chứa hình ảnh
+    │   └── background.jpg       # Hình nền cho trang web
+    └── /articles                # Thư mục chứa dữ liệu bài viết
+        └── articles.js          # Tệp JavaScript chứa các bài viết phân tích
+
 
 ## Hướng Dẫn Sử Dụng
 
