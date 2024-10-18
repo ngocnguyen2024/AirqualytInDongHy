@@ -1,86 +1,19 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-header {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-main {
-  padding: 2rem;
-  text-align: center;
-}
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-/* styles.css */
-
-/* Đặt font chữ và màu nền cho toàn bộ trang */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://cms.thainguyen.vn/documents/445171/10213052/anh+bia+du+lich.jpg/9926352a-f368-48f6-b958-7f9618fdd51b?t=1674098401705'); /* Đường dẫn tới hình ảnh nền */
+    background-size: cover;
+    background-position: center;
+    color: white; /* Màu chữ trắng */
 }
 
-/* Thiết lập header */
 header {
-    background-color: #007BFF; /* Màu xanh dương */
-    color: white;
-    padding: 20px 0;
     text-align: center;
-}
-
-/* Định dạng cho phần đăng nhập và chất lượng không khí */
-#auth, #air-quality {
-    max-width: 600px;
-    margin: 20px auto;
     padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Định dạng cho các input */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+h1, h2, h3 {
+    margin: 10px;
 }
-
-/* Định dạng cho các nút bấm */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF; /* Màu xanh dương */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Hiệu ứng hover cho nút bấm */
-button:hover {
-    background-color: #0056b3; /* Màu xanh đậm hơn khi rê chuột qua */
-}
-
-/* Định dạng cho tiêu đề */
-h2 {
-    margin-top: 0;
-}
-
-/* Định dạng cho thông tin chất lượng không khí */
-#aqi-data {
- 
