@@ -43,3 +43,29 @@
     }
   });
 </script>
+<div id="air-quality">
+  <h3>Chất Lượng Không Khí</h3>
+  <p id="aqi-data">Đang tải dữ liệu...</p>
+</div>
+
+<script>
+  const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee'; // Thay YOUR_API_KEY bằng API key bạn nhận được
+  const city = 'thainguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
+
+  async function fetchAQI() {
+    const response = await fetch(
+      `https://api.waqi.info/feed/${city}/?token=${apiKey}`
+    );
+    const data = await response.json();
+
+    if (data.status === 'ok') {
+      document.getElementById('aqi-data').innerText =
+        `Chỉ số AQI: ${data.data.aqi}`;
+    } else {
+      document.getElementById('aqi-data').innerText =
+        'Không thể lấy dữ liệu AQI.';
+    }
+  }
+
+  fetchAQI();
+</script>
