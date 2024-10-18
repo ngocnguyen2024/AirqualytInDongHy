@@ -1,243 +1,167 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <head>
-    <title>Air Quality Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Chất Lượng Không Khí</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Air Quality in Dong Hy</title>
-  <link rel="stylesheet" href="styles.css" />
 <body>
-  <canvas id="aqiChart" width="400" height="200"></canvas>
-  <header>
-    <h1>Air Quality in Dong Hy</h1>
-  </header>
-  <main>
-    <p>Theo dõi chất lượng không khí tại huyện Đồng Hỷ theo thời gian thực.</p>
-    <div id="air-quality">
-      <p>Đang cập nhật dữ liệu...</p>
+
+    <h1>Quản Lý Chất Lượng Không Khí tại Đồng Hỷ</h1>
+
+    <div id="auth">
+        <h2>Đăng Ký</h2>
+        <form id="register-form">
+            <input type="text" id="username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Ký</button>
+        </form>
+
+        <h2>Đăng Nhập</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="login-password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Nhập</button>
+        </form>
     </div>
-  </main>
-  <footer>
-    <p>&copy; 2024 Air Quality in Dong Hy</p>
-  </footer>
-</body>
-</html>
-<h2>Đăng Nhập</h2>
-<form id="login-form">
-  <input type="email" id="email" placeholder="Email" required />
-  <input type="password" id="password" placeholder="Password" required />
-  <button type="submit">Đăng Nhập</button>
-</form>
 
-<script>
-  const loginForm = document.getElementById('login-form');
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    <div id="air-quality" style="display:none;">
+        <h3>Chất Lượng Không Khí</h3>
+        <p id="aqi-data">Đang tải dữ liệu...</p>
+        <canvas id="aqiChart" width="400" height="200"></canvas>
+    </div>
 
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      alert('Đăng nhập thành công!');
-    } catch (error) {
-      alert('Lỗi: ' + error.message);
-    }
-  });
-</script>
-<div id="air-quality">
-  <h3>Chất Lượng Không Khí</h3>
-  <p id="aqi-data">Đang tải dữ liệu...</p>
-</div>
+    <script>
+        let isLoggedIn = false; // Biến trạng thái đăng nhập
 
-<script>
-  const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee'; // Thay YOUR_API_KEY bằng API key bạn nhận được
-  const city = 'Thai Nguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
+        // Xử lý đăng ký
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-  async function fetchAQI() {
-    const response = await fetch(
-      `https://api.waqi.info/feed/${city}/?token=${apiKey}`
-    );
-    const data = await response.json();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-    if (data.status === 'ok') {
-      document.getElementById('aqi-data').innerText =
-        `Chỉ số AQI: ${data.data.aqi}`;
-    } else {
-      document.getElementById('aqi-data').innerText =
-        'Không thể lấy dữ liệu AQI.';
-    }
-  }
+            // Lưu thông tin đăng ký vào local storage
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            
+            alert('Đăng ký thành công!');
+        });
 
-  fetchAQI();
-</script>
-<div id="blog-posts">
-  <h3>Bài Viết Mới Nhất</h3>
-  <ul id="posts-list"></ul>
-</div>
+        // Xử lý đăng nhập
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-<script>
-  async function fetchPosts() {
-    const response = await fetch(
-      'https://api.github.com/repos/ngocnguyen2024/AirqualytInDongHy/issues'
-    );
-    const posts = await response.json();
+            const loginUsername = document.getElementById('login-username').value;
+            const loginPassword = document.getElementById('login-password').value;
 
-    const postsList = document.getElementById('posts-list');
-    posts.forEach((post) => {
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `<a href="${post.html_url}" target="_blank">${post.title}</a>`;
-      postsList.appendChild(listItem);
-    });
-  }
-
-  fetchPosts();
-</script>
-<div id="air-quality">
-    <h3>Chất Lượng Không Khí</h3>
-    <p id="aqi-data">Đang tải dữ liệu...</p>
-</div>
-
-<canvas id="aqiChart" width="400" height="200"></canvas>
-
-<script>
-    const apiKey = 'YOUR_API_KEY'; // Thay YOUR_API_KEY bằng API key bạn nhận được
-    const city = 'thainguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
-
-    async function fetchAQI() {
-        try {
-            const response = await fetch(
-                `https://api.waqi.info/feed/${city}/?token=${apiKey}`
-            );
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
-
-            const data = await response.json();
-
-            if (data.status === 'ok') {
-                const aqi = data.data.aqi;
-                document.getElementById('aqi-data').innerText =
-                    `Chỉ số AQI: ${aqi}`;
-                
-                // Gọi hàm để vẽ biểu đồ
-                drawAQIChart(aqi);
+            // Kiểm tra thông tin đăng nhập
+            if (loginUsername === localStorage.getItem('username') && loginPassword === localStorage.getItem('password')) {
+                isLoggedIn = true; // Cập nhật trạng thái
+                alert('Đăng nhập thành công!');
+                document.getElementById('auth').style.display = 'none'; // Ẩn phần đăng nhập
+                document.getElementById('air-quality').style.display = 'block'; // Hiện phần chất lượng không khí
+                fetchAQI(); // Gọi hàm để lấy dữ liệu AQI
             } else {
+                alert('Sai tên đăng nhập hoặc mật khẩu!');
+            }
+        });
+
+        // Lấy dữ liệu AQI từ API
+        async function fetchAQI() {
+            const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee'; // Thay YOUR_API_KEY bằng API key bạn nhận được
+            const city = 'Thai Nguyen'; // Đặt tên thành phố hoặc địa điểm cần theo dõi
+
+            try {
+                const response = await fetch(
+                    `https://api.waqi.info/feed/${city}/?token=${apiKey}`
+                );
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    const aqi = data.data.aqi;
+                    document.getElementById('aqi-data').innerText =
+                        `Chỉ số AQI: ${aqi}`;
+                    
+                    // Gọi hàm để vẽ biểu đồ
+                    drawAQIChart(aqi);
+                } else {
+                    document.getElementById('aqi-data').innerText =
+                        'Không thể lấy dữ liệu AQI.';
+                }
+            } catch (error) {
+                console.error('Có lỗi xảy ra:', error);
                 document.getElementById('aqi-data').innerText =
                     'Không thể lấy dữ liệu AQI.';
             }
-        } catch (error) {
-            console.error('Có lỗi xảy ra:', error);
-            document.getElementById('aqi-data').innerText =
-                'Không thể lấy dữ liệu AQI.';
         }
-    }
 
-    function drawAQIChart(aqi) {
-        const ctx = document.getElementById('aqiChart').getContext('2d');
-        const aqiChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['AQI'],
-                datasets: [{
-                    label: 'Chỉ số AQI',
-                    data: [aqi],
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        // Vẽ biểu đồ chất lượng không khí
+        function drawAQIChart(aqi) {
+            const ctx = document.getElementById('aqiChart').getContext('2d');
+            const aqiChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['AQI'],
+                    datasets: [{
+                        label: 'Chỉ số AQI',
+                        data: [aqi],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-    }
-
-    fetchAQI();
-</script>setInterval(fetchAQI, 60000); // Cập nhật mỗi 60 giây
-
-<div id="auth">
-    <h2>Đăng Ký</h2>
-    <form id="register-form">
-        <input type="text" id="username" placeholder="Tên đăng nhập" required>
-        <input type="password" id="password" placeholder="Mật khẩu" required>
-        <button type="submit">Đăng Ký</button>
-    </form>
-
-    <h2>Đăng Nhập</h2>
-    <form id="login-form">
-        <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-        <input type="password" id="login-password" placeholder="Mật khẩu" required>
-        <button type="submit">Đăng Nhập</button>
-    </form>
-</div>
-<script>
-    // Xử lý đăng ký
-    document.getElementById('register-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        // Lưu thông tin đăng ký vào local storage
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        
-        alert('Đăng ký thành công!');
-    });
-
-    // Xử lý đăng nhập
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const loginUsername = document.getElementById('login-username').value;
-        const loginPassword = document.getElementById('login-password').value;
-
-        // Kiểm tra thông tin đăng nhập
-        if (loginUsername === localStorage.getItem('username') && loginPassword === localStorage.getItem('password')) {
-            alert('Đăng nhập thành công!');
-            // Tiến hành lấy dữ liệu AQI hoặc chuyển hướng đến trang khác
-        } else {
-            alert('Sai tên đăng nhập hoặc mật khẩu!');
+            });
         }
-    });
-</script>
-<script>
-    let isLoggedIn = false; // Biến trạng thái đăng nhập
+    </script>
+</body>
+</html>
 
-    // Xử lý đăng nhập (cập nhật biến trạng thái)
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-        // ... mã đăng nhập như trên ...
-        if (/* điều kiện đăng nhập thành công */) {
-            isLoggedIn = true; // Cập nhật trạng thái
-            // Hiện dữ liệu AQI
-        }
-    });
-
-    // Kiểm tra quyền truy cập
-    function checkAccess() {
-        if (!isLoggedIn) {
-            alert('Bạn cần đăng nhập để truy cập vào chức năng này.');
-            return false;
-        }
-        return true;
-    }
-
-    // Ví dụ về việc lấy dữ liệu AQI sau khi kiểm tra
-    function getAQIData() {
-        if (checkAccess()) {
-            fetchAQI();
-        }
-    }
-</script>
