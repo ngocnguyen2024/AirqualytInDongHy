@@ -6,10 +6,59 @@
     <title>Quản Lý Chất Lượng Không Khí</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Thêm CSS tại đây nếu cần */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        #auth, #air-quality {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        #aqi-data {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+
+    <header>
+        <h1>Quản Lý Chất Lượng Không Khí tại Đồng Hỷ</h1>
+    </header>
 
     <div id="auth">
         <h2>Đăng Nhập</h2>
