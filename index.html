@@ -167,3 +167,77 @@
     fetchAQI();
 </script>setInterval(fetchAQI, 60000); // Cập nhật mỗi 60 giây
 
+<div id="auth">
+    <h2>Đăng Ký</h2>
+    <form id="register-form">
+        <input type="text" id="username" placeholder="Tên đăng nhập" required>
+        <input type="password" id="password" placeholder="Mật khẩu" required>
+        <button type="submit">Đăng Ký</button>
+    </form>
+
+    <h2>Đăng Nhập</h2>
+    <form id="login-form">
+        <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+        <input type="password" id="login-password" placeholder="Mật khẩu" required>
+        <button type="submit">Đăng Nhập</button>
+    </form>
+</div>
+<script>
+    // Xử lý đăng ký
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Lưu thông tin đăng ký vào local storage
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+        
+        alert('Đăng ký thành công!');
+    });
+
+    // Xử lý đăng nhập
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const loginUsername = document.getElementById('login-username').value;
+        const loginPassword = document.getElementById('login-password').value;
+
+        // Kiểm tra thông tin đăng nhập
+        if (loginUsername === localStorage.getItem('username') && loginPassword === localStorage.getItem('password')) {
+            alert('Đăng nhập thành công!');
+            // Tiến hành lấy dữ liệu AQI hoặc chuyển hướng đến trang khác
+        } else {
+            alert('Sai tên đăng nhập hoặc mật khẩu!');
+        }
+    });
+</script>
+<script>
+    let isLoggedIn = false; // Biến trạng thái đăng nhập
+
+    // Xử lý đăng nhập (cập nhật biến trạng thái)
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        // ... mã đăng nhập như trên ...
+        if (/* điều kiện đăng nhập thành công */) {
+            isLoggedIn = true; // Cập nhật trạng thái
+            // Hiện dữ liệu AQI
+        }
+    });
+
+    // Kiểm tra quyền truy cập
+    function checkAccess() {
+        if (!isLoggedIn) {
+            alert('Bạn cần đăng nhập để truy cập vào chức năng này.');
+            return false;
+        }
+        return true;
+    }
+
+    // Ví dụ về việc lấy dữ liệu AQI sau khi kiểm tra
+    function getAQIData() {
+        if (checkAccess()) {
+            fetchAQI();
+        }
+    }
+</script>
