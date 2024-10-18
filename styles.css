@@ -1,36 +1,17 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('https://cms.thainguyen.vn/documents/445171/10213052/anh+bia+du+lich.jpg/9926352a-f368-48f6-b958-7f9618fdd51b?t=1674098401705'); /* Đường dẫn tới hình ảnh nền */
-    background-size: cover;
-    background-position: center;
-    color: white; /* Màu chữ trắng */
-}
-
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-h1, h2, h3 {
-    margin: 10px;
-}
 /* styles.css */
 
-/* Thiết lập màu nền trắng cho toàn bộ trang */
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* Màu nền trắng */
-    font-family: Arial, sans-serif; /* Chọn font chữ */
-    color: #333; /* Màu chữ tối để dễ đọc */
+    background-image: url('https://cms.thainguyen.vn/documents/445171/10213052/anh+bia+du+lich.jpg/9926352a-f368-48f6-b958-7f9618fdd51b?t=1674098401705'); /* Thêm hình nền */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
-/* Định dạng cho các tiêu đề */
-h1, h2, h3 {
-    color: #333; /* Màu chữ cho tiêu đề */
+/* Định dạng cho tiêu đề */
+h1, h2 {
+    color: #fff; /* Màu chữ cho tiêu đề */
 }
 
 /* Định dạng cho các nút */
@@ -39,20 +20,27 @@ button {
     color: white; /* Màu chữ nút */
     border: none;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
-    border-radius: 5px; /* Bo góc cho nút */
 }
 
 /* Định dạng cho các input */
 input {
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #ccc; /* Viền cho input */
-    border-radius: 4px; /* Bo góc cho input */
-    width: calc(100% - 22px); /* Để input không chèn ra ngoài */
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    width: calc(100% - 22px);
+}
+
+/* Định dạng cho container biểu đồ */
+#charts-container {
+    margin-top: 20px;
+}
+
+/* Định dạng cho danh sách bài viết */
+#articles {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+    padding: 10px;
+    border-radius: 5px;
 }
