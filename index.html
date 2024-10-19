@@ -3,175 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chất lượng không khí huyện Đồng Hỷ</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Hệ thống quản lý CLKK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        header ul li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        .main-content {
+            margin-top: 20px;
+        }
+
+        .main-content h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .table-box {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin: 10px;
+        }
+
+        .table-box h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Phần thêm cho chỉ số AQI */
+        .aqi-box {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .aqi-box h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .aqi-box p {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <div id="auth">
-        <h1>Đăng Nhập / Đăng Ký</h1>
-        <form id="register-form">
-            <input type="text" id="username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="password" placeholder="Mật khẩu" required>
-            <button type="submit">Đăng Ký</button>
-        </form>
-        <form id="login-form">
-            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="login-password" placeholder="Mật khẩu" required>
-            <button type="submit">Đăng Nhập</button>
-        </form>
-    </div>
+    <header>
+        <div class="container">
+            <h1>Hệ thống quản lý CLKK</h1>
+            <ul>
+                <li><a href="#users">Người dùng</a></li>
+                <li><a href="#airquality">Chất lượng không khí</a></li>
+                <li><a href="#alerts">Cảnh báo</a></li>
+                <li><a href="#aqi_api">API AQI</a></li>
+                <li><a href="#sensor_stations">Trạm quan trắc</a></li>
+                <li><a href="#data_storage">Kho lưu trữ</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <div id="main-content" style="display: none;">
-        <h2>Chất lượng không khí huyện Đồng Hỷ</h2>
-        <canvas id="airQualityChart" width="400" height="200"></canvas>
-        <canvas id="dailyAQIChart" width="400" height="200"></canvas>
-        
-        <h3>Các bài viết phân tích:</h3>
-        <ul id="articles-list"></ul>
-
-        <div id="warning" style="display: none; color: red;">
-            <strong>Cảnh báo:</strong> Chất lượng không khí không đạt yêu cầu.
+    <!-- Hiển thị chỉ số AQI -->
+    <div class="container">
+        <div class="aqi-box">
+            <h1>Chỉ số chất lượng không khí hiện tại</h1>
+            <p id="aqi-data">Đang tải dữ liệu...</p>
         </div>
     </div>
 
+    <div class="container main-content">
+        <h1>Quản lý hệ thống CLKK</h1>
+
+        <div class="table-container">
+            <!-- Bảng Users -->
+            <div class="table-box" id="users">
+                <h2>Người dùng</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>vanA@example.com</td>
+                            <td>user</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng AirQuality -->
+            <div class="table-box" id="airquality">
+                <h2>Chất lượng không khí</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>AQI</th>
+                            <th>PM2.5</th>
+                            <th>CO2</th>
+                            <th>Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>120</td>
+                            <td>35.2</td>
+                            <td>450</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Alerts -->
+            <div class="table-box" id="alerts">
+                <h2>Cảnh báo</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Người dùng ID</th>
+                            <th>Chất lượng không khí ID</th>
+                            <th>Nội dung cảnh báo</th>
+                            <th>Ngày gửi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>AQI vượt quá ngưỡng an toàn</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng AQI_API -->
+            <div class="table-box" id="aqi_api">
+                <h2>API AQI</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>API Key</th>
+                            <th>Endpoint</th>
+                            <th>Định dạng</th>
+                            <th>Ngày yêu cầu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>https://api.aqi.example.com</td>
+                            <td>JSON</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng SensorStations -->
+            <div class="table-box" id="sensor_stations">
+                <h2>Trạm quan trắc</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vị trí</th>
+                            <th>Loại cảm biến</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Hà Nội</td>
+                            <td>PM2.5</td>
+                            <td>active</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng DataStorage -->
+            <div class="table-box" id="data_storage">
+                <h2>Kho lưu trữ</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data ID</th>
+                            <th>Trạng thái sao lưu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>completed</td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hệ thống quản lý chất lượng không khí © 2024</p>
+    </footer>
+
     <script>
-        const users = []; // Danh sách người dùng
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const userExists = users.some(u => u.username === username);
-            if (userExists) {
-                alert('Tên đăng nhập đã tồn tại!');
-            } else {
-                users.push({ username, password });
-                alert('Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.');
-            }
-        });
-
-        // Đăng nhập người dùng
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-            const user = users.find(u => u.username === username && u.password === password);
-            if (user) {
-                document.getElementById('auth').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                fetchAirQualityData(); // Gọi dữ liệu khi đã đăng nhập
-            } else {
-                alert('Tên đăng nhập hoặc mật khẩu không đúng!');
-            }
-        });
-
-        // Hàm để lấy dữ liệu chất lượng không khí từ API
-        async function fetchAirQualityData() {
-            const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee'; // Thay 'YOUR_API_KEY' bằng API key của bạn
-            const city = 'Thai Nguyen'; // Tên thành phố bạn muốn lấy dữ liệu
-            const url = `https://api.waqi.info/feed/${city}/?token=${apiKey}`;
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                if (data.status === "ok") {
-                    const aqi = data.data.aqi;
-                    const aqiCategory = getAQICategory(aqi);
-                    alert(`Chất lượng không khí hiện tại: ${aqi} (${aqiCategory})`);
-                    displayAQIChart(data.data.iaqi);
-                    displayDailyAQIChart(); // Gọi hàm để hiển thị biểu đồ hàng ngày
-                    if (aqi > 100) {
-                        document.getElementById('warning').style.display = 'block'; // Hiển thị cảnh báo nếu AQI > 100
-                    }
-                } else {
-                    alert('Không thể lấy dữ liệu chất lượng không khí.');
-                }
-            } catch (error) {
-                console.error('Lỗi:', error);
-            }
-        }
-
-        // Hàm phân loại chất lượng không khí
-        function getAQICategory(aqi) {
-            if (aqi <= 50) return 'Tốt';
-            else if (aqi <= 100) return 'Trung bình';
-            else if (aqi <= 150) return 'Kém';
-            else if (aqi <= 200) return 'Xấu';
-            else if (aqi <= 300) return 'Rất xấu';
-            else return 'Nguy hiểm';
-        }
-
-        // Hàm hiển thị biểu đồ chất lượng không khí
-        function displayAQIChart(iaqData) {
-            const ctx = document.getElementById('airQualityChart').getContext('2d');
-            const labels = Object.keys(iaqData);
-            const values = Object.values(iaqData).map(item => item.v); // Lấy giá trị AQI cho từng chỉ số
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Chỉ số chất lượng không khí',
-                        data: values,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        }
-                    }
-                }
-            });
-        }
-
-        // Hàm hiển thị biểu đồ AQI hàng ngày (Giả lập dữ liệu)
-        function displayDailyAQIChart() {
-            const ctx = document.getElementById('dailyAQIChart').getContext('2d');
-            const labels = ['Ngày 1', 'Ngày 2', 'Ngày 3', 'Ngày 4', 'Ngày 5']; // Tên các ngày
-            const data = [70, 85, 50, 120, 90]; // Dữ liệu AQI giả lập
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Chỉ số AQI hàng ngày',
-                        data: data,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        }
-                    }
-                }
-            });
-        }
-
-        // Hàm giả lập để thêm bài viết vào danh sách
-        function addArticles() {
-            const articles = [
-                { title: "Phân Tích Chất Lượng Không Khí Tháng 1", content: "Dữ liệu cho thấy mức độ ô nhiễm cao vào tháng 1..." },
-                { title: "Tác Động của Ô Nhiễm Đến Sức Khỏe", content: "Ô nhiễm không khí có thể gây ra nhiều vấn đề sức khỏe..." },
-            ];
-            const articlesList = document.getElementById('articles-list');
-            articles.forEach(article => {
-                const li = document.createElement('li');
-                li.innerHTML = `${article.title}: ${article.content}`;
-                articlesList.appendChild(li);
-            });
-        }
-
-        // Thêm bài viết vào danh sách khi trang được tải
-        addArticles();
-    </script>
-</body>
-</html>
+        // API key
+        const apiKey = '7ddf9100e89da55116139544d0fa21
