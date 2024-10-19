@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hệ thống quản lý chất lượng không khí Huyện Đồng Hỷ</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Liên kết tới tệp styles.css -->
+</head>
+<body>
+    <header>
+        <h1>Hệ thống quản lý chất lượng không khí </h1>
+    </header>
+
+    <!-- Khu vực Dashboard -->
+    <div class="container">
+        <h1>Chào mừng, [Tên người dùng]</h1>
+        <p>Chào mừng bạn đã đăng nhập vào hệ thống quản lý chất lượng không khí.</p>
+    </div>
+
+    <!-- Hiển thị chỉ số AQI -->
+    <div class="container">
+        <div class="aqi-box">
+            <h1>Chỉ số chất lượng không khí hiện tại tại Thái Nguyên</h1>
+            <p id="aqi-data">Đang tải dữ liệu...</p>
+        </div>
+    </div>
+
+    <!-- Thông tin chi tiết hệ thống quản lý -->
+    <div class="container main-content">
+        <h1>Quản lý hệ thống CLKK</h1>
+
+        <div class="table-container">
+            <!-- Bảng Người dùng -->
+            <div class="table-box" id="users">
+                <h2>Người dùng</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>vanA@example.com</td>
+                            <td>user</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Chất lượng không khí -->
+            <div class="table-box" id="airquality">
+                <h2>Chất lượng không khí</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>AQI</th>
+                            <th>PM2.5</th>
+                            <th>CO2</th>
+                            <th>Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>120</td>
+                            <td>35.2</td>
+                            <td>450</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Cảnh báo -->
+            <div class="table-box" id="alerts">
+                <h2>Cảnh báo</h
