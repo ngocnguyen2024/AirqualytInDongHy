@@ -4,120 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý CLKK</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 90%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #77aaff 3px solid;
-        }
-
-        header a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-
-        header ul {
-            padding: 0;
-            list-style: none;
-        }
-
-        header ul li {
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-
-        .main-content {
-            margin-top: 20px;
-        }
-
-        .main-content h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .table-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .table-box {
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px;
-            margin: 10px;
-        }
-
-        .table-box h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Phần thêm cho chỉ số AQI */
-        .aqi-box {
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .aqi-box h1 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        .aqi-box p {
-            font-size: 18px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -137,7 +24,7 @@
     <!-- Hiển thị chỉ số AQI -->
     <div class="container">
         <div class="aqi-box">
-            <h1>Chỉ số chất lượng không khí hiện tại</h1>
+            <h1>Chỉ số chất lượng không khí hiện tại tại Thái Nguyên</h1>
             <p id="aqi-data">Đang tải dữ liệu...</p>
         </div>
     </div>
@@ -238,8 +125,8 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>abc123</td>
-                            <td>https://api.aqi.example.com</td>
+                            <td>7ddf9100e89da55116139544d0fa21e15d4038ee</td>
+                            <td>https://api.waqi.info/feed/</td>
                             <td>JSON</td>
                             <td>2024-10-10</td>
                         </tr>
@@ -263,7 +150,7 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Hà Nội</td>
+                            <td>Thái Nguyên</td>
                             <td>PM2.5</td>
                             <td>active</td>
                         </tr>
@@ -302,4 +189,32 @@
 
     <script>
         // API key
-        const apiKey = '7ddf9100e89da55116139544d0fa21
+        const apiKey = '7ddf9100e89da55116139544d0fa21e15d4038ee';
+
+        // Địa chỉ API với tham số thành phố Thái Nguyên
+        const city = 'Thai Nguyen';  // Địa điểm lấy dữ liệu
+        const apiUrl = `https://api.waqi.info/feed/${city}/?token=${apiKey}`;
+
+        // Hàm lấy dữ liệu AQI
+        async function fetchAQIData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                // Kiểm tra dữ liệu trả về
+                if (data.status === 'ok') {
+                    const aqi = data.data.aqi;  // Lấy chỉ số AQI từ dữ liệu
+                    document.getElementById('aqi-data').innerText = `Chỉ số AQI hiện tại tại ${city}: ${aqi}`;
+                } else {
+                    document.getElementById('aqi-data').innerText = `Không thể lấy dữ liệu AQI: ${data.data}`;
+                }
+            } catch (error) {
+                document.getElementById('aqi-data').innerText = 'Lỗi khi lấy dữ liệu từ API';
+            }
+        }
+
+        // Gọi hàm để lấy dữ liệu khi trang được tải
+        fetchAQIData();
+    </script>
+</body>
+</html>
