@@ -1,46 +1,112 @@
-/* styles.css */
-
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://cms.thainguyen.vn/documents/445171/10213052/anh+bia+du+lich.jpg/9926352a-f368-48f6-b958-7f9618fdd51b?t=1674098401705'); /* Thêm hình nền */
-    background-size: cover;
-    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #77aaff 3px solid;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header ul li {
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+.main-content {
+    margin-top: 20px;
+}
+
+.main-content h1 {
+    text-align: center;
     color: #333;
 }
 
-/* Định dạng cho tiêu đề */
-h1, h2 {
-    color: #fff; /* Màu chữ cho tiêu đề */
+.table-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-/* Định dạng cho các nút */
-button {
-    background-color: #4CAF50; /* Màu nền nút */
-    color: white; /* Màu chữ nút */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+.table-box {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 10px;
 }
 
-/* Định dạng cho các input */
-input {
+.table-box h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
     padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    width: calc(100% - 22px);
+    text-align: left;
 }
 
-/* Định dạng cho container biểu đồ */
-#charts-container {
-    margin-top: 20px;
+th {
+    background-color: #f4f4f4;
 }
 
-/* Định dạng cho danh sách bài viết */
-#articles {
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
     padding: 10px;
-    border-radius: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Phần thêm cho chỉ số AQI */
+.aqi-box {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.aqi-box h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.aqi-box p {
+    font-size: 18px;
 }
