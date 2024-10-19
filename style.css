@@ -1,0 +1,134 @@
+/* Đặt các quy tắc chung cho trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/background.jpg'); /* Thêm hình nền cho toàn trang */
+    background-size: cover; /* Đảm bảo hình nền bao phủ toàn bộ trang */
+    background-position: center; /* Canh giữa hình nền */
+    background-attachment: fixed; /* Giữ cố định hình nền khi cuộn */
+    color: #333;
+}
+
+/* Định dạng cho tiêu đề */
+header {
+    background: rgba(0, 0, 0, 0.5); /* Màu nền header với độ trong suốt */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: #77aaff 3px solid;
+}
+
+h1 {
+    text-align: center;
+    color: #fff; /* Đổi màu chữ tiêu đề thành màu trắng */
+}
+
+/* Định dạng cho container chung */
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Định dạng cho bảng */
+.table-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.table-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Hộp bảng có nền trắng mờ */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 48%;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.table-box h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.5); /* Màu nền footer với độ trong suốt */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Định dạng cho chỉ số AQI */
+.aqi-box {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.aqi-box h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.aqi-box p {
+    font-size: 18px;
+}
+
+/* Định dạng cho các form đăng nhập và đăng ký */
+.form-box {
+    width: 300px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng mờ */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
