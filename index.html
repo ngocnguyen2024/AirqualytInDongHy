@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý CLKK</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Liên kết tới tệp style.css -->
+</head>
+<body>
+    <!-- Tiêu đề chính -->
+    <header>
+        <h1>Hệ thống quản lý chất lượng không khí huyện Đồng Hỷ </h1>
+    </header>
+
+    <!-- Hiển thị chỉ số AQI -->
+    <div class="container">
+        <div class="aqi-box">
+            <h1>Chỉ số chất lượng không khí hiện tại tại Thái Nguyên</h1>
+            <p id="aqi-data">Đang tải dữ liệu...</p>
+        </div>
+    </div>
+
+    <!-- Nội dung chính của hệ thống quản lý CLKK -->
+    <div class="container main-content">
+        <h1>Quản lý hệ thống CLKK</h1>
+
+        <div class="table-container">
+            <!-- Bảng Người dùng -->
+            <div class="table-box" id="users">
+                <h2>Người dùng</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>vanA@example.com</td>
+                            <td>user</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Chất lượng không khí -->
+            <div class="table-box" id="airquality">
+                <h2>Chất lượng không khí</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>AQI</th>
+                            <th>PM2.5</th>
+                            <th>CO2</th>
+                            <th>Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>120</td>
+                            <td>35.2</td>
+                            <td>450</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Cảnh báo -->
+            <div class="table-box" id="alerts">
+                <h2>Cảnh báo</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Người dùng ID</th>
+                            <th>Chất lượng không khí ID</th>
+                            <th>Nội dung cảnh báo</th>
+                            <th>Ngày gửi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>AQI vượt quá ngưỡng an toàn</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng API AQI -->
+            <div class="table-box" id="aqi_api">
+                <h2>API AQI</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>API Key</th>
+                            <th>Endpoint</th>
+                            <th>Định dạng</th>
+                            <th>Ngày yêu cầu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>7ddf9100e89da55116139544d0fa21e15d4038ee</td>
+                            <td>https://api.waqi.info/feed/</td>
+                            <td>JSON</td>
+                            <td>2024-10-10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Trạm quan trắc -->
+            <div class="table-box" id="sensor_stations">
+                <h2>Trạm quan trắc</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vị trí</th>
+                            <th>Loại cảm biến</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Thái Nguyên</td>
+                            <td>PM2.5</td>
+                            <td>active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng Kho lưu trữ -->
+            <div class="table-box" id="data_storage">
+                <h2>Kho lưu trữ</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data ID</th>
+                            <th>Trạng thái sao lưu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>completed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Hệ thống quản lý chất lượng không khí © 2024</p>
+    </footer>
+
+    <!-- Liên kết tới tệp script.js -->
+    <script src="js/script.js"></script> 
+</body>
+</html>
