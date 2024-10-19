@@ -3,55 +3,60 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../assets/background.jpg'); /* Thêm hình nền cho toàn trang */
-    background-size: cover; /* Đảm bảo hình nền bao phủ toàn bộ trang */
-    background-position: center; /* Canh giữa hình nền */
-    background-attachment: fixed; /* Giữ cố định hình nền khi cuộn */
+    background-image: url('https://cms.thainguyen.vn/documents/445171/10213052/anh+bia+du+lich.jpg/9926352a-f368-48f6-b958-7f9618fdd51b?t=1674098401705');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #333;
 }
 
-/* Định dạng cho tiêu đề */
+/* Định dạng tiêu đề và logo */
 header {
-    background: rgba(0, 0, 0, 0.5); /* Màu nền header với độ trong suốt */
-    color: #fff;
-    padding: 20px;
     text-align: center;
-    border-bottom: #77aaff 3px solid;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Tạo nền mờ cho tiêu đề */
+    padding: 20px;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px; /* Khoảng cách dưới logo */
 }
 
 h1 {
-    text-align: center;
-    color: #fff; /* Đổi màu chữ tiêu đề thành màu trắng */
+    color: #333;
+    margin-top: 0;
+    font-size: 24px;
 }
 
-/* Định dạng cho container chung */
+/* Căn chỉnh cho toàn bộ container */
 .container {
     width: 90%;
-    margin: auto;
+    margin: 20px auto;
     overflow: hidden;
 }
 
-/* Định dạng cho bảng */
+/* Định dạng cho bảng dữ liệu */
 .table-container {
     margin: 20px 0;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column; /* Bố trí bảng theo chiều dọc */
+    justify-content: space-between;
 }
 
 .table-box {
-    background-color: rgba(255, 255, 255, 0.8); /* Hộp bảng có nền trắng mờ */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8); /* Tạo nền trắng mờ */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ nhẹ cho hộp */
     padding: 20px;
-    width: 48%;
-    margin: 10px;
-    box-sizing: border-box;
+    margin-bottom: 20px; /* Thêm khoảng cách giữa các bảng */
+    border-radius: 5px; /* Bo tròn góc bảng */
 }
 
 .table-box h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 table {
@@ -72,23 +77,14 @@ th {
     background-color: #f4f4f4;
 }
 
-footer {
-    background: rgba(0, 0, 0, 0.5); /* Màu nền footer với độ trong suốt */
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Định dạng cho chỉ số AQI */
+/* Phần chỉ số AQI */
 .aqi-box {
     text-align: center;
     margin: 20px 0;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .aqi-box h1 {
@@ -107,6 +103,7 @@ footer {
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.9); /* Nền trắng mờ */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 label {
@@ -131,4 +128,32 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* Căn chỉnh phần liên kết */
+.register-link, .login-link {
+    text-align: center;
+}
+
+.register-link a, .login-link a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Định dạng cho phần footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    border-top: 3px solid #77aaff;
 }
