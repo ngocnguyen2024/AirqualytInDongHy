@@ -22,3 +22,10 @@ Dự án này nhằm mục đích phát triển một hệ thống quản lý ch
    ```bash
    git clone https://github.com/ngocnguyen2024/AirqualytInDongHy.git
    cd AirqualytInDongHy
+project/
+│
+├── index.html            (Trang chính hoặc trang dashboard sau khi đăng nhập)
+├── login.html            (Trang đăng nhập)
+├── register.html         (Trang đăng ký)
+├── style.css             (Tệp chứa các quy tắc CSS chung)
+└── script.js             (Tệp chứa mã JavaScript)
