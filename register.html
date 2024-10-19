@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Hệ thống quản lý chất lượng không khí</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Liên kết tới tệp styles.css -->
+</head>
+<body>
+    <header>
+        <h1>Hệ thống quản lý chất lượng không khí huyện Đồng Hỷ</h1>
+    </header>
+
+    <!-- Form đăng ký -->
+    <div class="container">
+        <div class="form-box">
+            <h1>Đăng ký tài khoản</h1>
+            <form action="dashboard.html" method="POST">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required>
+
+                <input type="submit" value="Đăng ký">
+            </form>
+
+            <!-- Liên kết đến trang đăng nhập -->
+            <div class="login-link">
+                <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hệ thống quản lý chất lượng không khí © 2024</p>
+    </footer>
+</body>
+</html>
